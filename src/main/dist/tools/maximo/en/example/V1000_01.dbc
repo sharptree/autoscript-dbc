@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE script SYSTEM "script.dtd">
+<script author="Jason VenHuizen" scriptname="V1000_01">
+    <description>Example</description>
+    <statements>
+        <add_update_autoscript path="example.py" language="python"/>
+        <add_update_autoscript path="scripts/example.js" language="javascript"/>
+        <remove_autoscript name="examplescriptname"/>
+    </statements>
+</script>
