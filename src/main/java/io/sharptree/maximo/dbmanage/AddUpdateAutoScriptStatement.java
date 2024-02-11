@@ -12,6 +12,9 @@ import psdi.util.StringUtility;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.sql.Clob;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 import java.util.Stack;
 import java.util.stream.Collectors;
 
@@ -116,7 +119,7 @@ public class AddUpdateAutoScriptStatement extends ChangeStatement {
         is.addColumnStringValue("loglevel", config.logLevel);
         is.addColumnStringValue("status", "Active");
         is.addColumnValue("active", config.active);
-        is.addColumnStringValue("source", source);
+        is.addColumnStringValue("source", "1=1");
         is.addColumnValue("createddate", "sysdate");
         is.addColumnValue("statusdate", "sysdate");
         is.addColumnValue("changedate", "sysdate");
@@ -149,6 +152,16 @@ public class AddUpdateAutoScriptStatement extends ChangeStatement {
         is.addColumnStringValue("status", "Active");
 
         doSql(is.generateInsertSql());
+
+
+        Clob c = getConnection().createClob();
+        c.setString(1, source);
+        PreparedStatement s = getConnection().prepareStatement("update autoscript set source = ? where autoscript = ?");
+        s.setClob(1, c);
+        s.setString(2, autoscript);
+
+        s.executeUpdate();
+        s.close();
 
         if (config.autoScriptVars != null && !config.autoScriptVars.isEmpty()) {
             for (AutoscriptVar autoScriptVar : config.autoScriptVars) {
