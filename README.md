@@ -4,9 +4,9 @@ The *autoscript-dbc* project provides DBC support for deploying automation scrip
 # Getting Started
 
 ## Copy Classes and script.dtd
-To use the *autoscript-dbc* extension, copy the compiled classes to the [SMP_HOME]/maximo/tools/maximo/classes directory, for example `/opt/IBM/SMP/maximo/tools/maximo/classes` (unix) or `C:\IBM\SMP\maximo\tools\maximo\classes` (windows).  
+To use the *autoscript-dbc* extension, copy the compiled classes to the `[SMP_HOME]/maximo/tools/maximo/classes` directory, for example `/opt/IBM/SMP/maximo/tools/maximo/classes` (unix) or `C:\IBM\SMP\maximo\tools\maximo\classes` (windows).  
 
-The classes can be found in the build/classes/java/main folder of this project after calling the gradle assemble task or can be obtained in the zip and tar files provided under this project's GitHub Releases.
+The classes can be found in the `build/classes/java/main` folder of this project after calling the gradle assemble task or can be obtained in the zip and tar files provided under this project's GitHub Releases.
 
 Copy the script.dtd from the project to the [SMP_HOME]/maximo/tools/maximo directory, for example `/opt/IBM/SMP/maximo/tools/maximo` (unix) or `C:\IBM\SMP\maximo\tools\maximo` (windows).
 
@@ -41,6 +41,7 @@ Below is an example DBC script using both a relative and absolute path.
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script SYSTEM "script.dtd">
+<!--suppress CheckValidXmlInScriptTagBody -->
 <script author="Jason VenHuizen" scriptname="V1000_01">
     <description>Example</description>
     <statements>
@@ -58,11 +59,12 @@ Below is an example DBC script using both a relative and absolute path.
 
 The `remove_autoscript` requires the `name` attribute.  This is the name of the automation script to remove from the target system.
 
-Below is an example DBC script that removes an automation script named `EXAMPLESCRIP`
+Below is an example DBC script that removes an automation script named `EXAMPLESCRIPT`
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE script SYSTEM "script.dtd">
+<!--suppress CheckValidXmlInScriptTagBody -->
 <script author="Jason VenHuizen" scriptname="V1000_01">
     <description>Example</description>
     <statements>
