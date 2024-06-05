@@ -3,7 +3,7 @@ package io.sharptree.maximo.dbmanage;
 import com.google.gson.Gson;
 import com.ibm.tivoli.maximo.dbmanage.MXExceptionWithDefault;
 import org.apache.log4j.Logger;
-import org.jdom.Element;
+import org.jdom2.Element;
 import psdi.dbmanage.statement.ChangeStatement;
 import psdi.dbmanage.statement.InsertSql;
 import psdi.dbmanage.statement.Script;
