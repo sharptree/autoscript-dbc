@@ -7,6 +7,7 @@
 	scriptname CDATA #REQUIRED
 	for_demo_only (true|false) "false"
 	for_install_only (true|false) "false"
+	for_system_down_only (true|false) "false"
 	context (master|landlord|tenants|all) #IMPLIED
 	tenantcode CDATA #IMPLIED
 >
@@ -688,12 +689,13 @@ Don't include a terminator - ; or go.-->
 	domainvalue CDATA #IMPLIED
 	domainid CDATA #IMPLIED
 	selectnumber CDATA #IMPLIED
+	selectstring CDATA #IMPLIED
 	clob CDATA #IMPLIED
 	blob CDATA #IMPLIED
 >
 <!-- domainvalue and domainid work together to get the appropriate value for the column based upon the database. -->
 
-<!ELEMENT delete (where+)>
+<!ELEMENT delete (where*,whereclause*)>
 <!ATTLIST delete
 	table CDATA #REQUIRED
 >
@@ -701,13 +703,20 @@ Don't include a terminator - ; or go.-->
 <!ELEMENT where (columnvalue+)>
 <!-- column values are equals only and are ANDed together, i.e. a=1 and b=2 and c=3 -->
 
-<!ELEMENT update (set,where+)>
+<!ELEMENT update (set,where*,whereclause*)>
 <!ATTLIST update
 	table CDATA #REQUIRED
 >
 
 <!ELEMENT set (columnvalue+)>
 <!-- these column values will be used as the set part, i.e. set a = 1, b = 2 -->
+
+<!ELEMENT whereclause EMPTY>
+<!ATTLIST whereclause
+	value CDATA #REQUIRED
+>
+
+<!ELEMENT stringvalue EMPTY>
 
 <!ELEMENT logical_relationship (longdescription)?>
 <!ATTLIST logical_relationship
