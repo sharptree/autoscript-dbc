@@ -5,6 +5,6 @@
     <statements>
         <add_update_autoscript path="example.py" language="python"/>
         <add_update_autoscript path="scripts/example.js" language="javascript"/>
-        <remove_autoscript name="examplescriptname"/>
+        <!-- <remove_autoscript name="examplescriptname"/> -->
     </statements>
 </script>
