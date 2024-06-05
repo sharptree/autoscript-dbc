@@ -187,7 +187,7 @@ dependencies {
     compileOnly(fileTree("libs") { listOf("*.jar") })
 
     @Suppress("GradlePackageUpdate")
-    compileOnly("org.jdom:jdom:2.0.5")
+    compileOnly("org.jdom:jdom:2.0.2")
     @Suppress("GradlePackageUpdate")
     compileOnly("log4j:log4j:1.2.16")
 
