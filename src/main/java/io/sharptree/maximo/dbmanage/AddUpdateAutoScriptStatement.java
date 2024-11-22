@@ -312,10 +312,11 @@ public class AddUpdateAutoScriptStatement extends ChangeStatement {
             is.addColumnValue("hasld", false);
             doSql(is.generateInsertSql());
         }
-
-
-        for (LaunchPointVar launchPointVar : scriptLaunchPoint.launchPointVars) {
-            createLaunchPointVar(autoscript, scriptLaunchPoint.launchPointName, launchPointVar);
+        // in case of script for custom condition, we met errors when there is no lauchpointvars provided
+        if(scriptLaunchPoint.launchPointVars != null){
+            for (LaunchPointVar launchPointVar : scriptLaunchPoint.launchPointVars) {
+                createLaunchPointVar(autoscript, scriptLaunchPoint.launchPointName, launchPointVar);
+            }
         }
     }
 
