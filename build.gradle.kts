@@ -7,13 +7,13 @@ val archivaUserName: String by project
 val archivaPassword: String by project
 
 group = "io.sharptree"
-version = "1.0.3"
+version = "1.0.3.1"
 
 val vendor = "Sharptree"
 val product = "autoscript-dbc"
 val distro = "autoscript-dbc"
 
-project.version = "1.0.3"
+project.version = "1.0.3.1"
 
 tasks.compileJava {
     sourceCompatibility = "1.8"

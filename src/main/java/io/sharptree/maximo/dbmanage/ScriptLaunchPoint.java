@@ -174,7 +174,8 @@ public class ScriptLaunchPoint {
         }
 
         if (launchPointType.equalsIgnoreCase("ATTRIBUTE")) {
-            if (!initializeAccessRestriction && initializeValue && !validate && !retrieveList && !runAction) {
+            // fix issue-2 The autoscript dbc callout class is not able to integrate the autoscript based on the initializeValue event of attribute launchpoint
+            if (!initializeAccessRestriction && !initializeValue && !validate && !retrieveList && !runAction) {
                 throw new Exception("For an attribute launch point one of the follow must be true: initializeAccessRestriction, initializeValue,validate,retrieveList or runAction");
             }
         }
