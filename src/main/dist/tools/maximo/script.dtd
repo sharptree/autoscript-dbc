@@ -167,6 +167,7 @@ Don't include a terminator - ; or go.-->
 	child CDATA #REQUIRED
 	whereclause CDATA #REQUIRED
 	remarks CDATA #REQUIRED
+	isdefault (true|false) "false"
 >
 <!ELEMENT modify_relationship EMPTY >
 <!ATTLIST modify_relationship
@@ -175,6 +176,7 @@ Don't include a terminator - ; or go.-->
 	child CDATA #IMPLIED
 	whereclause CDATA #IMPLIED
 	remarks CDATA #IMPLIED
+	isdefault (true|false) "false"
 >
 <!ELEMENT drop_relationship EMPTY >
 <!ATTLIST drop_relationship
@@ -203,6 +205,7 @@ Don't include a terminator - ; or go.-->
 	mainobject (true|false) "false"
 	internal (true|false) "false"
 	trigroot CDATA #IMPLIED
+	unique_column CDATA #IMPLIED
 	storagetype (tenant|master|system|template|system_resource|master_with_setup|template_with_setup|tenant_monitor) "tenant"
 	resource_type CDATA #IMPLIED
 >
@@ -497,7 +500,10 @@ Don't include a terminator - ; or go.-->
 	description CDATA #REQUIRED
 	menu_position (first|last|before|after) "last"
 	menu_param CDATA #IMPLIED
+	skipnavigation (true|false) "false"
+	skipentitlement (true|false) "false"
 	image CDATA #IMPLIED
+	maxprodid CDATA #IMPLIED
 >
 
 <!-- Note that image refers to the module's image, not for the applications -->
@@ -507,7 +513,10 @@ Don't include a terminator - ; or go.-->
 	description CDATA #IMPLIED
 	menu_position (first|last|before|after) #IMPLIED
 	menu_pos_param CDATA #IMPLIED
+	skipnavigation (true|false) "false"
+	skipentitlement (true|false) "false"
 	image CDATA #IMPLIED
+	maxprodid CDATA #IMPLIED
 >
 <!-- qqqq what about sub-menus? -->
 
@@ -518,6 +527,7 @@ Don't include a terminator - ; or go.-->
 	app CDATA #REQUIRED
 	menu_position (first|last|before|after) "last"
 	menu_pos_param CDATA #IMPLIED
+	pinned CDATA #IMPLIED
 	image CDATA #IMPLIED
 >
 
@@ -531,6 +541,7 @@ Don't include a terminator - ; or go.-->
 <!ATTLIST create_app
 	app CDATA #REQUIRED
 	description CDATA #REQUIRED
+	skipnavigation (true|false) "false"
 	restrictions CDATA #IMPLIED
 	orderby CDATA #IMPLIED
 	maintbname CDATA #IMPLIED
@@ -541,6 +552,7 @@ Don't include a terminator - ; or go.-->
 <!ATTLIST modify_app
 	app CDATA #REQUIRED
 	description CDATA #IMPLIED
+	skipnavigation (true|false) "false"
 	restrictions CDATA #IMPLIED
 	orderby CDATA #IMPLIED
 	maintbname CDATA #IMPLIED
@@ -555,6 +567,8 @@ Don't include a terminator - ; or go.-->
 <!ELEMENT module_menu_app EMPTY>
 <!ATTLIST module_menu_app
 	app CDATA #REQUIRED 
+	url CDATA #IMPLIED
+	pinned CDATA #IMPLIED
 	image CDATA #IMPLIED
 >
 
