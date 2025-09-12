@@ -304,7 +304,7 @@ public class AddUpdateAutoScriptStatement extends ChangeStatement {
             is = new InsertSql("ACTION", getConnection());
             is.addColumnStringValue("action", scriptLaunchPoint.launchPointName);
             is.addColumnStringValue("objectname", scriptLaunchPoint.objectName);
-            is.addColumnStringValue("custom", "CUSTOM");
+            is.addColumnStringValue("type", "CUSTOM");
             is.addColumnStringValue("value", "com.ibm.tivoli.maximo.script.ScriptAction");
             is.addColumnStringValue("parameter", autoscript + "," + scriptLaunchPoint.launchPointName + "," + scriptLaunchPoint.actionName);
             is.addColumnStringValue("langcode", "EN");
