@@ -3,7 +3,7 @@ package io.sharptree.maximo.dbmanage;
 import com.google.gson.Gson;
 import com.ibm.tivoli.maximo.dbmanage.MXExceptionWithDefault;
 import org.apache.log4j.Logger;
-import org.jdom.Element;
+import org.jdom2.Element;
 import psdi.dbmanage.statement.ChangeStatement;
 import psdi.dbmanage.statement.InsertSql;
 import psdi.dbmanage.statement.Script;
@@ -304,7 +304,7 @@ public class AddUpdateAutoScriptStatement extends ChangeStatement {
             is = new InsertSql("ACTION", getConnection());
             is.addColumnStringValue("action", scriptLaunchPoint.launchPointName);
             is.addColumnStringValue("objectname", scriptLaunchPoint.objectName);
-            is.addColumnStringValue("custom", "CUSTOM");
+            is.addColumnStringValue("type", "CUSTOM");
             is.addColumnStringValue("value", "com.ibm.tivoli.maximo.script.ScriptAction");
             is.addColumnStringValue("parameter", autoscript + "," + scriptLaunchPoint.launchPointName + "," + scriptLaunchPoint.actionName);
             is.addColumnStringValue("langcode", "EN");

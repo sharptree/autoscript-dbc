@@ -1,6 +1,6 @@
 package io.sharptree.maximo.dbmanage;
 
-import org.jdom.Element;
+import org.jdom2.Element;
 import psdi.dbmanage.statement.ChangeStatement;
 import psdi.dbmanage.statement.Script;
 import psdi.util.StringUtility;
