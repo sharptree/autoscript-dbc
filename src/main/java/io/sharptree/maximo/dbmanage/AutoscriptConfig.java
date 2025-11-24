@@ -42,6 +42,11 @@ public class AutoscriptConfig {
     public List<ScriptLaunchPoint> scriptLaunchPoints;
 
     /**
+     * Flag to indicate whether invoking script functions is allowed.
+     */
+    public boolean allowInvokingScriptFunctions = false;
+
+    /**
      * Validate the script configuration to perform basic sanity checks for the provided values.
      *
      * @throws Exception thrown if a validation error occurs.

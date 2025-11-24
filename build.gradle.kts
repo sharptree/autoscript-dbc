@@ -15,9 +15,9 @@ val distro = "autoscript-dbc"
 
 project.version = "1.0.3"
 
-tasks.compileJava {
-    sourceCompatibility = "1.8"
-    targetCompatibility = "1.8"
+
+java{
+    toolchain { languageVersion.set(JavaLanguageVersion.of(17)) }
 }
 
 repositories {
@@ -26,15 +26,10 @@ repositories {
 
 distributions {
 
-    val distribution by configurations.creating {
-        extendsFrom(configurations.implementation.get())
-        isCanBeResolved = true
-    }
-
     main {
         contents {
             into("applications/maximo/lib") {
-                from("$buildDir/libs/${product.toLowerCase()}.jar")
+                from("${layout.buildDirectory}/libs/${product.lowercase()}.jar")
             }
 
             into("tools/maximo/classes") {
@@ -69,7 +64,7 @@ tasks.register("fixzip") {
 
 tasks.register("unzip") {
     dependsOn("assembleDist")
-    val archiveBaseName = project.name + "-" + project.version
+
     val distDir = layout.buildDirectory.asFile.get().path + File.separator + "distributions"
 
     doLast {
@@ -110,7 +105,7 @@ tasks.register<Tar>("retar") {
 }
 
 tasks.jar {
-    archiveFileName.set("${product.toLowerCase()}.jar")
+    archiveFileName.set("${product.lowercase()}.jar")
 }
 
 tasks.getByName("distTar").dependsOn("jar")
@@ -126,12 +121,12 @@ tasks.jar {
             )
         )
     }
-    archiveBaseName.set(product.toLowerCase())
+    archiveBaseName.set(product.lowercase())
 }
 
 tasks.register<Zip>("releaseZip") {
     dependsOn("unzip")
-    val archiveBaseName = distro.toLowerCase() + "-" + project.version
+    val archiveBaseName = distro.lowercase() + "-" + project.version
     val distDir = layout.buildDirectory.asFile.get().path + File.separator + "distributions"
     val baseDir = File(distDir + File.separator + "tmp" + File.separator + archiveBaseName)
 
@@ -148,7 +143,7 @@ tasks.register<Zip>("releaseZip") {
 tasks.register<Tar>("releaseTar") {
     dependsOn("unzip")
 
-    val archiveBaseName = distro.toLowerCase() + "-" + project.version
+    val archiveBaseName = distro.lowercase() + "-" + project.version
     val distDir = layout.buildDirectory.asFile.get().path + File.separator + "distributions"
     val baseDir = File(distDir + File.separator + "tmp" + File.separator + archiveBaseName)
 
@@ -181,7 +176,7 @@ dependencies {
      *
      * asset-management - the businessobjects.jar
      * webclient - classes from the maximouiweb/WEB-INF/classes folder
-     * tools - classes from the [SMP_HOME]/maximo/tools/maximo/classes folder
+     * tools - classes from the <SMP_HOME>/maximo/tools/maximo/classes folder
      *
      */
     compileOnly(fileTree("libs") { listOf("*.jar") })
@@ -189,6 +184,7 @@ dependencies {
     @Suppress("GradlePackageUpdate")
     // https://mvnrepository.com/artifact/org.jdom/jdom2
     compileOnly("org.jdom:jdom2:2.0.6")
+
     @Suppress("GradlePackageUpdate")
     compileOnly("log4j:log4j:1.2.16")
 

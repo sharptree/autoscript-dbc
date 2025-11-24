@@ -751,3 +751,4 @@
         <!ELEMENT remove_autoscript EMPTY >
         <!ATTLIST remove_autoscript
                 name CDATA #REQUIRED
+                >

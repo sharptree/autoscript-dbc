@@ -12,9 +12,10 @@ import psdi.util.StringUtility;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.nio.charset.StandardCharsets;
 import java.sql.Clob;
 import java.sql.PreparedStatement;
-import java.sql.Statement;
+
 import java.util.Stack;
 import java.util.stream.Collectors;
 
@@ -138,7 +139,7 @@ public class AddUpdateAutoScriptStatement extends ChangeStatement {
                 autoscript.startsWith("OSACTION.") ||
                 autoscript.startsWith("PUBLISH.") ||
                 autoscript.startsWith("SYNC.") ||
-                autoscript.startsWith("INVOKE.");
+                autoscript.startsWith("INVOKE.") || config.allowInvokingScriptFunctions;
 
         is.addColumnValue("interface", isInterface);
 
@@ -349,7 +350,9 @@ public class AddUpdateAutoScriptStatement extends ChangeStatement {
             throw new Exception("The specified script file is either null or does not exist.");
         }
 
-        return (new BufferedReader(new FileReader(scriptFile))).lines().collect(Collectors.joining("\n"));
+        try (BufferedReader bufferedReader = new BufferedReader(new FileReader(scriptFile, StandardCharsets.UTF_8))) {
+            return bufferedReader.lines().collect(Collectors.joining("\n"));
+        }
     }
 
     private AutoscriptConfig getConfigFromScript(String source) throws Exception {

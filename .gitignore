@@ -1,4 +1,6 @@
 build
+bin
 .gradle
 .idea
 libs/*.jar
+*.class
